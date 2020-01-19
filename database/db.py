@@ -19,11 +19,11 @@ with open("random_wardrobe.txt", "r") as f:
                             'color': info[2],
                             'formality': info[3],
                             'price': int(info[4][:-1])}
-            shirts.insert(shirt_element)
+            shirts.insert_one(shirt_element)
         elif info[0] == 'pants':
             pants_element = {'style': info[1],
                             'brand': info[2],
                             'color': info[3],
                             'formality': info[4],
                             'price': int(info[5][:-1])}
-            pants.insert(pants_element)
+            pants.insert_one(pants_element)
