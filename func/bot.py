@@ -19,15 +19,16 @@ def unknown(bot, update):
     )
 
 def get_outfit(bot, update, args):
-    num_of_outfits = args[0]
-    max_shirt_price = args[1]
-    max_pants_price = args[2]
+    num_of_outfits = int(args[0])
+    max_shirt_price = int(args[1])
+    max_pants_price = int(args[2])
     outfit_list = random_outfit_generator(num_of_outfits, max_shirt_price, max_pants_price)
     outfit_str = "The generated outfits are:\n"
     for i, e in enumerate(outfit_list):
-        new_shirt_str = e[0]['formality'] + e[0]['color'] + 'shirt by '+ e[0]['brand'] 
-        new_pants_str = e[1]['formality'] + e[1]['color'] + e[1]['style'] + 'pants by '+ e[1]['brand']  
-        outfit_str += f'Outfit number {i}: '+ new_shirt_str + '\n' + new_pants_str + '\n'
+        new_shirt_str = e[0]['formality'] + ' ' + e[0]['color'] + ' shirt by '+ e[0]['brand'] 
+        new_pants_str = e[1]['formality'] + ' ' + e[1]['color'] + ' ' + e[1]['style'] + ' pants by '+ e[1]['brand']
+        outfit_price = e[0]['price'] + e[1]['price']
+        outfit_str += f'Outfit number {i+1}: '+ new_shirt_str + '\n' + new_pants_str + f'.\n QuANoto cuSTa o OuTfiT:${outfit_price}k dols\n'
     bot.send_message(
         chat_id=update.message.chat_id,
         text=outfit_str
@@ -45,7 +46,7 @@ def main():
         CommandHandler('start', start)
     )
     dispatcher.add_handler(
-        CommandHandler('outfit', http_cats, pass_args=True)
+        CommandHandler('outfit', get_outfit, pass_args=True)
     )
     dispatcher.add_handler(
         MessageHandler(Filters.command, unknown)
