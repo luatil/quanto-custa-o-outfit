@@ -2,7 +2,7 @@ from random_outfit import random_outfit_generator
 
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
 
-TELEGRAM_TOKEN = '1019291881:AAGx82A3PUae12VB6aCDwPXJRq7Uf_2F_js'
+TELEGRAM_TOKEN = xxxxxxxxx
 
 
 def start(bot, update):
